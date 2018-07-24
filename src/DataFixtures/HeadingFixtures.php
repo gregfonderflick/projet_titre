@@ -12,7 +12,7 @@ class HeadingFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-
+/**
         for($i = 1; $i <= 10; $i++){
             $heading = new Heading();
             $heading ->setTitle("Titre de la rubrique num $i")
@@ -23,5 +23,6 @@ class HeadingFixtures extends Fixture
         }
 
         $manager->flush();
+ * **/
     }
 }
