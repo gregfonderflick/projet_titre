@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Repository\ArticleRepository;
+use App\Twig\AppExtension;
 
 class HeadingController extends Controller
 {
