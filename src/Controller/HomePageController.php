@@ -20,15 +20,7 @@ class HomePageController extends Controller
     public function home()
     {
 
-        /**$repository = $this->getDoctrine()
-            ->getRepository(Heading::class);
-
-        $heading = $repository->findAll();
-         * */
-        $heading->getLastEntities(Heading::class);
-
-        return $this->render('base.html.twig', array(
-                'headings'=> $heading)
+        return $this->render('home_page/home.html.twig', array()
         );
     }
 

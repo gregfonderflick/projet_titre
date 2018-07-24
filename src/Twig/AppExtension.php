@@ -8,14 +8,9 @@
 
 namespace App\Twig;
 
-
-use App\Entity\Article;
 use App\Entity\Heading;
-use App\Entity\User;
-use App\Form\HeadingType;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 
@@ -29,20 +24,16 @@ class AppExtension extends AbstractExtension
         $this->doctrine = $doctrine;
     }
 
-
-    public function getLastEntities($entityName)
+    /**
+     * récupère la liste des rubriques
+     * @return object[]
+     */
+    public function getHeadings()
     {
 
-        $entitiesMapping = [
-            'article' => Article::class,
-            'heading' => Heading::class,
-            'heading_type' => HeadingType::class,
-            'user' => User::class
-        ];
-
-        $entity = $entitiesMapping[$entityName];
-
-        $headings = $this->doctrine->getRepository($entity)->findAll();
+        $headings = $this->doctrine
+            ->getRepository(Heading::class)
+            ->findBy([], ['position' => 'ASC']);
 
         return $headings;
     }
@@ -51,16 +42,9 @@ class AppExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction('getLastEntities', [$this, 'getLastEntities'])
+            new TwigFunction('getHeadings', [$this, 'getHeadings'])
         );
 
-    }
-
-    public function getFilters()
-    {
-        return array(
-            new TwigFilter('title', array($this, 'titleFilter')),
-        );
     }
 }
 
